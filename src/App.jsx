@@ -1,49 +1,80 @@
-import React, { useState } from 'react';
-import ThreeScene from './ThreeScene';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
+import Contact from './pages/Contact';
 
-const App = () => {
-  const [currentSection, setCurrentSection] = useState('home');
-  const [isLoading, setIsLoading] = useState(true);
+const AVATAR = (
+  <NavLink to="/" aria-label="Home" style={{ display: 'block', margin: '0 auto', width: 'fit-content' }}>
+    <img
+      src="/gene-sequence-svgrepo-com.svg"
+      alt="Gene Sequence Logo"
+      width={120}
+      height={120}
+      style={{ display: 'block', margin: '0 auto' }}
+    />
+  </NavLink>
+);
 
+const SOCIALS = [
+  { icon: <FaLinkedin />, url: 'https://www.linkedin.com/in/francisco-rsantos/', label: 'LinkedIn' },
+  { icon: <FaGithub />, url: 'https://github.com/qtoino', label: 'GitHub' },
+];
+
+function MainLayout({ children }) {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   return (
-    <div className="w-full h-screen bg-black text-white">
-      {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
-          <div className="text-2xl">Loading...</div>
-        </div>
+    <>
+      {!isHome && (
+        <nav className="top-nav">
+          <NavLink to="/projects" className={({ isActive }) => isActive ? 'active' : ''}>Projects</NavLink>
+          <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink>
+          <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Résumé</NavLink>
+        </nav>
       )}
-
-      {/* 3D Scene */}
-      <ThreeScene />
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full p-4 z-10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold">Portfolio</div>
-          <div className="space-x-6">
-            {['home', 'projects', 'about', 'contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => setCurrentSection(section)}
-                className={`capitalize ${
-                  currentSection === section
-                    ? 'text-blue-400'
-                    : 'text-gray-300 hover:text-white'
-                } transition-colors`}
-              >
-                {section}
-              </button>
+      <div className="centered-layout">
+        <div className="content-wrapper">
+          {AVATAR}
+          <h1 className="main-title">Francisco Santos</h1>
+          <div className="subtitle">AI engineer, computational creativity enthusiast</div>
+          <div className="social-row">
+            {SOCIALS.map(({ icon, url, label }) => (
+              <a key={label} href={url} target="_blank" rel="noopener noreferrer" aria-label={label} className="social-icon">
+                {icon}
+              </a>
             ))}
           </div>
+          {isHome && <hr />}
+          {isHome && (
+            <nav className="main-nav">
+              <NavLink to="/projects" className={({ isActive }) => isActive ? 'active' : ''}>Projects</NavLink>
+              <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink>
+              <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Résumé</NavLink>
+            </nav>
+          )}
+          <div className="page-content">{children}</div>
         </div>
-      </nav>
-
-      {/* Section Content */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Add section content components here */}
+        <footer className="footer">
+          <div>© {new Date().getFullYear()} Francisco Santos</div>
+        </footer>
       </div>
-    </div>
+    </>
+  );
+}
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/about" element={<MainLayout><About /></MainLayout>} />
+        <Route path="/projects" element={<MainLayout><Projects /></MainLayout>} />
+        <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+      </Routes>
+    </Router>
   );
 };
 
