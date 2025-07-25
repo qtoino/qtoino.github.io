@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/qtoino.github.io/static/css/main.15994026.css",
-    "main.js": "/qtoino.github.io/static/js/main.3c411f0e.js",
-    "static/js/206.8cc6c515.chunk.js": "/qtoino.github.io/static/js/206.8cc6c515.chunk.js",
-    "index.html": "/qtoino.github.io/index.html"
+    "main.css": "/personal_website/static/css/main.15994026.css",
+    "main.js": "/personal_website/static/js/main.538cee62.js",
+    "static/js/206.8cc6c515.chunk.js": "/personal_website/static/js/206.8cc6c515.chunk.js",
+    "index.html": "/personal_website/index.html"
   },
   "entrypoints": [
     "static/css/main.15994026.css",
-    "static/js/main.3c411f0e.js"
+    "static/js/main.538cee62.js"
   ]
 }
