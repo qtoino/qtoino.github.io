@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 const AVATAR = (
   <NavLink to="/" aria-label="Home" style={{ display: 'block', margin: '0 auto', width: 'fit-content' }}>
     <img
-      src="/gene-sequence-svgrepo-com.svg"
+      src={`${process.env.PUBLIC_URL}/gene-sequence-svgrepo-com.svg`}
       alt="Gene Sequence Logo"
       width={120}
       height={120}
