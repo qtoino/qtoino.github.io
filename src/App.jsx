@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 const AVATAR = (
   <NavLink to="/" aria-label="Home" style={{ display: 'block', margin: '0 auto', width: 'fit-content' }}>
     <img
-      src={`${process.env.PUBLIC_URL}/gene-sequence-svgrepo-com.svg`}
+      src="./gene-sequence-svgrepo-com.svg"
       alt="Gene Sequence Logo"
       width={120}
       height={120}

@@ -2,7 +2,7 @@
   "name": "personal_website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://qtoino.github.io/qtoino.github.io/",
+  "homepage": "https://qtoino.github.io/personal_website/",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
